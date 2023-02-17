@@ -17,39 +17,39 @@ echo " 9. Exit\n"
 
 read -p " option: " quehacer
 	case $quehacer in
-		1)    echo "Actualizando la lista de paquetes y añadiendo mejoras al sistema";
+		1)echo "Actualizando la lista de paquetes y añadiendo mejoras al sistema";
 			sudo nala upgrade
-                  ;;
-		2)    echo "Listando paquetes por actualizar";
-                  sudo nala update
-                  ;;
-		3)    read show
+                  	;;
+		2)echo "Listando paquetes por actualizar";
+                  	sudo nala update
+                  	;;
+		3)read show
                   echo "Mostrando detalles";
 			sudo nala show $show
-                  ;;
-            4)    read search
-	            clear
+                  	;;
+                4)read search
+	          clear
                   echo "Searching...";
-                  sudo nala search $search
-                  ;; 
-            5)    read remove 
+                  	sudo nala search $search
+                  	;;
+                5)read remove
                   echo "Removiendo...";
-                  sudo nala remove $remove
-                  ;;
-            6)    read purge
+                  	sudo nala remove $remove
+                  	;;
+                6)read purge
                   echo "Purgando..";
-                  sudo nala purge $purge
-                  ;;
-		7)    read pkg
-			echo "Instalando $pkg ...";
+                  	sudo nala purge $purge
+                  	;;
+		7)read pkg
+		  echo "Instalando $pkg ...";
 			sudo nala install $pkg
-                  ;;
-		8)    echo "Eliminando automáticamente los paquetes que ya no son necesarios.";
-                  sudo nala autoremove
-                  ;;
-		9)    echo "\n Bye Bye... $user\e[0m \n";
-#	            clear;
-                  exit 1
-                  ;;
+                  	;;
+		8)echo "Eliminando automáticamente los paquetes que ya no son necesarios.";
+                  	sudo nala autoremove
+                  	;;
+		9)echo "\n Bye Bye... $user\e[0m \n";
+#	          clear;
+                  	exit 1
+                  	;;
 	esac
 done
