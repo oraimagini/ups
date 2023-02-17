@@ -1,7 +1,9 @@
 
-```   sudo apt install nala   ```
+```   Bienvenido a NALA   ```
 
-             # Bienvenido a NALA mario
+             sudo apt install nala
+
+  # Bienvenido a NALA
   # Interfaz para el administrador de paquetes APT.
 
  1. Upgrade
