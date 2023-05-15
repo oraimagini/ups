@@ -32,7 +32,7 @@ read quehacer
             echo "Remove?";
             sudo dnf remove $purge;;
         7)  echo "Eliminando paqueteria sin utilizar"
-			sudo apt autoremove;;
+			sudo dnf autoremove;;
         8)  clear
             echo " alias: Listar o crear alias de comando"
             echo " autoremove: elimina todos los paquetes innecesarios que se instalaron originalmente como dependencias"
