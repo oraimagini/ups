@@ -9,15 +9,15 @@ echo -e "                MENÚ PRINCIPAL           "
 echo -e "-----------------------------------------\n"
 
 echo -e "Qué deseas hacer $user\n"
-echo "1. Update"
-echo "2. Search"
-echo "3. Install"
-echo "4. Remove"
-echo "7. autoremove"
-echo "8. help"
-echo "9. Exit"
+echo -e "1. Update"
+echo -e "2. Search"
+echo -e "3. Install"
+echo -e "4. Remove"
+echo -e "7. autoremove"
+echo -e "8. help"
+echo -e "9. Exit\n"
 
-read quehacer
+read -p "Option: " quehacer
 
 	case $quehacer in
 		1) 	echo "Actualizando Repositorios";
@@ -67,5 +67,31 @@ read quehacer
             ;;
 		9)  echo -e "\nBye Bye... $user\n";
             exit 1;;
+        42) echo -e "\n la respuesta a todo es 42... \n"
+            echo "____*##########*                             "
+            echo "__*##############                            "            
+            echo "__################                           " 
+            echo "_##################_________*####*           " 
+            echo "__##################_____*##########         " 
+            echo "__##################___*#############        " 
+            echo "___#################*_###############*       " 
+            echo "____#################################*       " 
+            echo "______###############################        " 
+            echo "_______#############################         " 
+            echo "________=##########################          " 
+            echo "__________########################           " 
+            echo "___________*#####################            " 
+            echo "____________*##################              " 
+            echo "_____________*###############                " 
+            echo "_______________#############                 " 
+            echo "________________##########                   " 
+            echo "________________=#######*                    "
+            echo "_________________######                      " 
+            echo "__________________####                       " 
+            echo "__________________###                        " 
+            echo "___________________#                         " 
+           
+            echo -e "\n"
+            ;;
 	esac
 done
