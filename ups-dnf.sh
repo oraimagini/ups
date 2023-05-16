@@ -93,5 +93,6 @@ read -p "Option: " quehacer
            
             echo -e "\n"
             ;;
+        *)  echo -e "\n No es una opción, intenta nuevamente... \n"
 	esac
 done
