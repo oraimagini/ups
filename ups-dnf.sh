@@ -17,20 +17,22 @@ echo -e "6. Copr"
 echo -e "7. Autoremove"
 echo -e "8. help"
 echo -e "9. Exit\n"
-
 read -p "Option: " quehacer
-
 	case $quehacer in
-		1) 	echo "Actualizando Repositorios";
+		1) 	clear
+            echo "Actualizando Repositorios";
 			sudo dnf update;;
-		2)  read search
+		2)  clear
+            read -p "Escribe el nombre del programa que buscas: " search
             echo "Searching...";
             sudo dnf search $search;;
-		3) 	read pkg
+		3) 	clear
+            read -p "Escribe el nombre del programa que deseas instalar: " pkg
 			echo "Instalando...";
 			sudo dnf install $pkg;;
-		4)  read purge
-            echo "Remove?";
+		4)  clear
+            read -p "Escribe el nombre del programa que deseas REMOVER: " pkg 
+            echo "Remove?"
             sudo dnf remove $purge;;
         5)      echo -e "\n*** Groups ***"
                 echo -e "1) Listar "
@@ -128,7 +130,6 @@ read -p "Option: " quehacer
             echo "__________________####                       " 
             echo "__________________###                        " 
             echo "___________________#                         " 
-           
             echo -e "\n"
             ;;
         *)  echo -e "\n No es una opción, intenta nuevamente... \n"
