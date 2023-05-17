@@ -33,6 +33,20 @@ read -p "Option: " quehacer
 		4)  read purge
             echo "Remove?";
             sudo dnf remove $purge;;
+        5)  echo -e "*** Groups ***"
+            echo -e "a) Listar "
+            echo -e "b) Información"
+            echo -e "b) Instalar"
+            echo -e "b) Remover"
+            read -p "opción: " group pkg
+            if [ $group == a ]; then
+            sudo dnf group list
+            elif [ $cache == b ]; then
+            sudo dnf group info $pkg
+            else
+            read -n1 -s -p "Presiona cualquier tecla para continuar..." 
+            echo -e "\n\nVolviendo al menu principal\n"
+            fi;;
         7)  echo "Eliminando paqueteria sin utilizar"
 			sudo dnf autoremove
             read -p "Desea eliminar datos almacenados en la caché [yes/no]: " cache
