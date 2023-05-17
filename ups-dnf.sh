@@ -41,8 +41,8 @@ read -p "Option: " quehacer
             read -p "opción: " group pkg
             if [ $group == a ]; then
             sudo dnf group list
-            elif [ $cache == b ]; then
-            sudo dnf group info $pkg
+            elif [ $group == b ]; then
+            sudo dnf group info " $pkg "
             else
             read -n1 -s -p "Presiona cualquier tecla para continuar..." 
             echo -e "\n\nVolviendo al menu principal\n"
