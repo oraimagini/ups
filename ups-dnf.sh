@@ -13,7 +13,9 @@ echo -e "1. Update"
 echo -e "2. Search"
 echo -e "3. Install"
 echo -e "4. Remove"
-echo -e "7. autoremove"
+echo -e "5. Group"
+echo -e "6. Copr"
+echo -e "7. Autoremove"
 echo -e "8. help"
 echo -e "9. Exit\n"
 
@@ -32,12 +34,19 @@ read -p "Option: " quehacer
             echo "Remove?";
             sudo dnf remove $purge;;
         7)  echo "Eliminando paqueteria sin utilizar"
-			sudo dnf autoremove;;
+			sudo dnf autoremove
+            read -p "Desea eliminar datos almacenados en la caché [yes/no]: " cache
+            if [ $cache == yes ]; then
+            sudo dnf clean all
+            else
+            read -n1 -s -p "Presiona cualquier tecla para continuar..." 
+            echo -e "\n\nVolviendo al menu principal\n"
+            fi;;
         8)  clear
             echo " alias:               Listar o crear alias de comando"
             echo " autoremove:          elimina todos los paquetes innecesarios que se instalaron originalmente como dependencias"
             echo " check:               comprobar si hay problemas en el empaquetado"
-            echo " check-update:        actualizaciones comprobar actualizaciones de paquetes disponibles"
+            echo " check-update:        comprobar actualizaciones de paquetes disponibles"
             echo " clean:               eliminar datos almacenados en caché"
             echo " deplist:             [en desuso, use repoquery --deplist] Enumere las dependencias del paquete y qué paquetes las proporcionan"
             echo " distro-sync:         sincroniza los paquetes instalados con las últimas versiones disponibles"
@@ -46,14 +55,14 @@ read -p "Option: " quehacer
             echo " help:                mostrar un mensaje de uso útil"
             echo " history:             visualización de historial, o uso, el historial de transacciones"
             echo " info:                información muestra detalles sobre un paquete o grupo de paquetes"
-            echo " install:             instalar instalar un paquete o paquetes en su sistema"
+            echo " install:             instalar un paquete o paquetes en su sistema"
             echo " list:                lista enumerar un paquete o grupos de paquetes"
             echo " makecache:           genera la caché de metadatos"
-            echo " mark:                marcar marcar o desmarcar los paquetes instalados como instalados por el usuario."
+            echo " mark:                marcar o desmarcar los paquetes instalados como instalados por el usuario."
             echo " module:              módulo Interactuar con módulos."
-            echo " provides:            proporciona encontrar qué paquete proporciona el valor dado"
-            echo " reinstall:           reinstalar reinstalar un paquete"
-            echo " remove:              eliminar eliminar un paquete o paquetes de su sistema"
+            echo " provides:            encuentra qué paquete proporciona el valor dado"
+            echo " reinstall:           reinstalar un paquete"
+            echo " remove:              eliminar un paquete o paquetes de su sistema"
             echo " repolist:            muestra los repositorios de software configurados"
             echo " repoquery:           búsqueda de paquetes que coincidan con la palabra clave"
             echo " repository-packages: ejecuta comandos sobre todos los paquetes en un repositorio dado"
