@@ -1,14 +1,13 @@
 #!/bin/bash
 user=$(whoami)
-while :
-do
 echo -e "-----------------------------------------"
 echo -e "DNF - Administrador de paquetes en Fedora"
 echo -e "-----------------------------------------"
 echo -e "                MENÚ PRINCIPAL           "
-echo -e "-----------------------------------------\n"
-
-echo -e "Qué deseas hacer $user\n"
+echo -e "-----------------------------------------"
+echo -e "\nQué deseas hacer $user\n"
+while :
+do
 echo -e "1. Update"
 echo -e "2. Search"
 echo -e "3. Install"
@@ -33,29 +32,44 @@ read -p "Option: " quehacer
 		4)  read purge
             echo "Remove?";
             sudo dnf remove $purge;;
-        5)  echo -e "*** Groups ***"
-            echo -e "a) Listar "
-            echo -e "b) Información"
-            echo -e "b) Instalar"
-            echo -e "b) Remover"
-            read -p "opción: " group pkg
-            if [ $group == a ]; then
-            sudo dnf group list
-            elif [ $group == b ]; then
-            sudo dnf group info " $pkg "
-            else
-            read -n1 -s -p "Presiona cualquier tecla para continuar..." 
-            echo -e "\n\nVolviendo al menu principal\n"
-            fi;;
+        5)      echo -e "\n*** Groups ***"
+                echo -e "1) Listar "
+                echo -e "2) Información"
+                echo -e "3) Instalar"
+                echo -e "4) Remover\n"
+                  read -p "Opción: " group
+                  if [ $group == 1 ]; then
+                  sudo dnf group list
+                  read -n1 -s -p "Presiona cualquier tecla para continuar..." 
+                  echo -e "\n\nVolviendo al menu principal\n"
+                  elif [ $group == 2 ]; then
+                  echo -e "\nIngrese el nombre del Group\n"
+                  read pkg
+                  rpkg=$pkg
+                  sudo dnf group info "$rpkg"
+                  elif [ $group == 3 ]; then
+                  echo -e "\nIngrese el nombre del Group que desea instalar\n"
+                  read pkg
+                  rpkg=$pkg
+                  sudo dnf group install "$rpkg"
+                  elif [ $group == 4 ]; then
+                  echo -e "\nIngrese el nombre del Group que desea eliminar\n"
+                  read pkg
+                  rpkg=$pkg
+                  sudo dnf group remove "$rpkg"
+                  else
+                  read -n1 -s -p "Presiona cualquier tecla para continuar..." 
+                  echo -e "\n\nVolviendo al menu principal\n"
+                  fi;;
         7)  echo "Eliminando paqueteria sin utilizar"
 			sudo dnf autoremove
-            read -p "Desea eliminar datos almacenados en la caché [yes/no]: " cache
-            if [ $cache == yes ]; then
-            sudo dnf clean all
-            else
-            read -n1 -s -p "Presiona cualquier tecla para continuar..." 
-            echo -e "\n\nVolviendo al menu principal\n"
-            fi;;
+                  read -p "Desea eliminar datos almacenados en la caché [yes/no]: " cache
+                  if [ $cache == yes ]; then
+                  sudo dnf clean all
+                  else
+                  read -n1 -s -p "Presiona cualquier tecla para continuar..." 
+                  echo -e "\n\nVolviendo al menu principal\n"
+                  fi;;
         8)  clear
             echo " alias:               Listar o crear alias de comando"
             echo " autoremove:          elimina todos los paquetes innecesarios que se instalaron originalmente como dependencias"
@@ -86,7 +100,8 @@ read -p "Option: " quehacer
             echo " updateinfo:          muestra avisos sobre paquetes"
             echo " upgrade:             actualizar un paquete o paquetes en su sistema"
             echo " upgrade-minimal:     actualización mínima, pero solo la coincidencia del paquete 'más nuevo' que soluciona un problema que afecta su sistema"
-            read -n1 -s -p "Presiona cualquier tecla para continuar..."  
+            read -n1 -s -p "Presiona cualquier tecla para continuar..."
+            echo -e "\n\nVolviendo al menu principal\n"
             ;;
 		9)  echo -e "\nBye Bye... $user\n";
             exit 1;;
