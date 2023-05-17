@@ -3,28 +3,28 @@ user=$(whoami)
 echo -e "-----------------------------------------"
 echo -e "DNF - Administrador de paquetes en Fedora"
 echo -e "-----------------------------------------"
-echo -e "                MENÚ PRINCIPAL           "
+echo -e "            MENÚ PRINCIPAL               "
 echo -e "-----------------------------------------"
-echo -e "\nQué deseas hacer $user\n"
+echo -e "\nQué deseas hacer $user"
 while :
 do
-echo -e "1. Update"
-echo -e "2. Search"
-echo -e "3. Install"
-echo -e "4. Remove"
-echo -e "5. Group"
+echo -e "\n1. Actualizar"
+echo -e "2. Buscar"
+echo -e "3. Instalar"
+echo -e "4. Remover"
+echo -e "5. Grupos"
 echo -e "6. Copr"
-echo -e "7. Autoremove"
-echo -e "8. help"
-echo -e "9. Exit\n"
-read -p "Option: " quehacer
+echo -e "7. Limpiar"
+echo -e "8. Ayuda"
+echo -e "9. Salir\n"
+read -p "Opción: " quehacer
 	case $quehacer in
 		1) 	clear
             echo "Actualizando Repositorios";
 			sudo dnf update;;
 		2)  clear
             read -p "Escribe el nombre del programa que buscas: " search
-            echo "Searching...";
+            echo "Buscando...";
             sudo dnf search $search;;
 		3) 	clear
             read -p "Escribe el nombre del programa que deseas instalar: " pkg
@@ -32,13 +32,14 @@ read -p "Option: " quehacer
 			sudo dnf install $pkg;;
 		4)  clear
             read -p "Escribe el nombre del programa que deseas REMOVER: " pkg 
-            echo "Remove?"
+            echo "ELIMINANDO..."
             sudo dnf remove $purge;;
-        5)      echo -e "\n*** Groups ***"
-                echo -e "1) Listar "
-                echo -e "2) Información"
-                echo -e "3) Instalar"
-                echo -e "4) Remover\n"
+        5)      echo -e "\n*** Grupos de repositorios ***\n"
+                echo -e "1. Listar "
+                echo -e "2. Información"
+                echo -e "3. Instalar"
+                echo -e "4. Remover"
+                echo -e "5. Exit\n"
                   read -p "Opción: " group
                   if [ $group == 1 ]; then
                   sudo dnf group list
@@ -59,6 +60,9 @@ read -p "Option: " quehacer
                   read pkg
                   rpkg=$pkg
                   sudo dnf group remove "$rpkg"
+                  elif [ $group == 5 ]; then
+                  read -n1 -s -p "Presiona cualquier tecla para continuar..."
+                  echo -e "\nVolviendo al menu principal"
                   else
                   read -n1 -s -p "Presiona cualquier tecla para continuar..." 
                   echo -e "\n\nVolviendo al menu principal\n"
@@ -107,7 +111,8 @@ read -p "Option: " quehacer
             ;;
 		9)  echo -e "\nBye Bye... $user\n";
             exit 1;;
-        42) echo -e "\n la respuesta a todo es 42... \n"
+        42) clear
+            echo -e "\n la respuesta a TODO es 42... \n"
             echo "____*##########*                             "
             echo "__*##############                            "            
             echo "__################                           " 
