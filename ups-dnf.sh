@@ -67,6 +67,43 @@ read -p "Opción: " quehacer
                   read -n1 -s -p "Presiona cualquier tecla para continuar..." 
                   echo -e "\n\nVolviendo al menu principal\n"
                   fi;;
+       6)  echo -e "------------------------------------"
+           echo -e "***             COPR             ***"
+           echo -e "*** repositorios de la comunidad ***"
+           echo -e "------------------------------------"
+                echo -e "\n1. Repositorios instalados "
+                echo -e "2. Habilitar repositorios"
+                echo -e "3. Deshabilitar repositorios"
+                echo -e "4. Remover repositorios"
+                echo -e "5. Exit\n"
+                  read -p "Opción: " group
+                  if [ $group == 1 ]; then
+                  sudo dnf copr list
+                  read -n1 -s -p "Presiona cualquier tecla para continuar..." 
+                  echo -e "\n\nVolviendo al menu principal\n"
+                  elif [ $group == 2 ]; then
+                  echo -e "\nIngrese el nombre y repositorio que desea Habilitar\n"
+                  read pkg
+                  rpkg=$pkg
+                  sudo dnf copr enable "$rpkg"
+                  elif [ $group == 3 ]; then
+                  echo -e "\nIngrese el nombre y repositorio que desea deshabilitar\n"
+                  read pkg
+                  rpkg=$pkg
+                  sudo dnf copr disable "$rpkg"
+                  elif [ $group == 4 ]; then
+                  echo -e "\nIngrese el nombre y repositorio que desea remover\n"
+                  read pkg
+                  rpkg=$pkg
+                  sudo dnf copr remove "$rpkg"
+                  elif [ $group == 5 ]; then
+                  read -n1 -s -p "Presiona cualquier tecla para continuar..."
+                  echo -e "\nVolviendo al menu principal"
+                  else
+                  echo -e "Esa opción no es válida, vuelve a intentarlo"   
+                  read -n1 -s -p "Presiona cualquier tecla para continuar..." 
+                  echo -e "\n\nVolviendo al menu principal\n"
+                  fi;;        
         7)  echo "Eliminando paqueteria sin utilizar"
 			sudo dnf autoremove
                   read -p "Desea eliminar datos almacenados en la caché [yes/no]: " cache
