@@ -15,7 +15,7 @@ echo -e "4. Remover"
 echo -e "5. Grupos"
 echo -e "6. Copr"
 echo -e "7. Limpiar"
-echo -e "8. Ayuda"
+echo -e "8. Local"
 echo -e "9. Salir\n"
 read -p "Opción: " quehacer
 	case $quehacer in
@@ -34,7 +34,9 @@ read -p "Opción: " quehacer
             read -p "Escribe el nombre del programa que deseas REMOVER: " pkg 
             echo "ELIMINANDO..."
             sudo dnf remove $purge;;
-        5)      echo -e "\n*** Grupos de repositorios ***\n"
+        5)      echo -e "------------------------------"
+                echo -e "*** Grupos de repositorios ***"
+                echo -e "------------------------------\n"
                 echo -e "1. Listar "
                 echo -e "2. Información"
                 echo -e "3. Instalar"
@@ -114,6 +116,14 @@ read -p "Opción: " quehacer
                   echo -e "\n\nVolviendo al menu principal\n"
                   fi;;
         8)  clear
+            echo -e "\nIngrese el nombre del programa instalado que buscas\n"
+            read pkg
+            rpkg=$pkg
+            sudo dnf list installed | grep "$rpkg"
+            ;;  
+		9)  echo -e "\nBye Bye... $user\n";
+            exit 1;;
+        -h | --help)  clear
             echo " alias:               Listar o crear alias de comando"
             echo " autoremove:          elimina todos los paquetes innecesarios que se instalaron originalmente como dependencias"
             echo " check:               comprobar si hay problemas en el empaquetado"
@@ -146,8 +156,8 @@ read -p "Opción: " quehacer
             read -n1 -s -p "Presiona cualquier tecla para continuar..."
             echo -e "\n\nVolviendo al menu principal\n"
             ;;
-		9)  echo -e "\nBye Bye... $user\n";
-            exit 1;;
+        clear) clear
+               ;;    
         42) clear
             echo -e "\n la respuesta a TODO es 42... \n"
             echo "____*##########*                             "
