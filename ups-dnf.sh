@@ -15,25 +15,35 @@ echo -e "4. Remover"
 echo -e "5. Grupos"
 echo -e "6. Copr"
 echo -e "7. Limpiar"
-echo -e "8. Local"
+echo -e "8. Ayuda"
 echo -e "9. Salir\n"
 read -p "Opción: " quehacer
 	case $quehacer in
 		1) 	clear
             echo "Actualizando Repositorios";
-			sudo dnf update;;
+			sudo dnf update
+            ;;
 		2)  clear
             read -p "Escribe el nombre del programa que buscas: " search
             echo "Buscando...";
-            sudo dnf search $search;;
+            sudo dnf search $search
+            echo -e "\n Revisando si esta instalado en su equipo..."
+            res=`sudo dnf list installed | grep "$search"`
+            echo $res   
+            if [[ $res == "" ]] ; then 
+            echo -e " No se encontraron coincidencias!!"
+            fi
+            ;;
 		3) 	clear
             read -p "Escribe el nombre del programa que deseas instalar: " pkg
 			echo "Instalando...";
-			sudo dnf install $pkg;;
+			sudo dnf install $pkg
+            ;;
 		4)  clear
             read -p "Escribe el nombre del programa que deseas REMOVER: " pkg 
             echo "ELIMINANDO..."
-            sudo dnf remove $purge;;
+            sudo dnf remove $purge
+            ;;
         5)      echo -e "------------------------------"
                 echo -e "*** Grupos de repositorios ***"
                 echo -e "------------------------------\n"
@@ -68,7 +78,8 @@ read -p "Opción: " quehacer
                   else
                   read -n1 -s -p "Presiona cualquier tecla para continuar..." 
                   echo -e "\n\nVolviendo al menu principal\n"
-                  fi;;
+                  fi
+                  ;;
        6)  echo -e "------------------------------------"
            echo -e "***             COPR             ***"
            echo -e "*** repositorios de la comunidad ***"
@@ -105,7 +116,8 @@ read -p "Opción: " quehacer
                   echo -e "Esa opción no es válida, vuelve a intentarlo"   
                   read -n1 -s -p "Presiona cualquier tecla para continuar..." 
                   echo -e "\n\nVolviendo al menu principal\n"
-                  fi;;        
+                  fi
+                  ;;        
         7)  echo "Eliminando paqueteria sin utilizar"
 			sudo dnf autoremove
                   read -p "Desea eliminar datos almacenados en la caché [yes/no]: " cache
@@ -114,16 +126,9 @@ read -p "Opción: " quehacer
                   else
                   read -n1 -s -p "Presiona cualquier tecla para continuar..." 
                   echo -e "\n\nVolviendo al menu principal\n"
-                  fi;;
+                  fi
+                  ;;
         8)  clear
-            echo -e "\nIngrese el nombre del programa instalado que buscas\n"
-            read pkg
-            rpkg=$pkg
-            sudo dnf list installed | grep "$rpkg"
-            ;;  
-		9)  echo -e "\nBye Bye... $user\n";
-            exit 1;;
-        -h | --help)  clear
             echo " alias:               Listar o crear alias de comando"
             echo " autoremove:          elimina todos los paquetes innecesarios que se instalaron originalmente como dependencias"
             echo " check:               comprobar si hay problemas en el empaquetado"
@@ -152,9 +157,11 @@ read -p "Opción: " quehacer
             echo " swap:                intercambiar, ejecutar un mod DNF interactivo para eliminar e instalar una especificación"
             echo " updateinfo:          muestra avisos sobre paquetes"
             echo " upgrade:             actualizar un paquete o paquetes en su sistema"
-            echo " upgrade-minimal:     actualización mínima, pero solo la coincidencia del paquete 'más nuevo' que soluciona un problema que afecta su sistema"
             read -n1 -s -p "Presiona cualquier tecla para continuar..."
             echo -e "\n\nVolviendo al menu principal\n"
+            ;;
+		9)  echo -e "\nBye Bye... $user\n";
+            exit 1
             ;;
         clear) clear
                ;;    
