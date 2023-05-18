@@ -1,23 +1,23 @@
 #!/bin/bash
 user=$(whoami)
-echo -e "-----------------------------------------"
-echo -e "DNF - Administrador de paquetes en Fedora"
-echo -e "-----------------------------------------"
-echo -e "            MENÚ PRINCIPAL               "
-echo -e "-----------------------------------------"
-echo -e "\nQué deseas hacer $user"
+echo -e " -----------------------------------------"
+echo -e " DNF - Administrador de paquetes en Fedora"
+echo -e " -----------------------------------------"
+echo -e "             MENÚ PRINCIPAL               "
+echo -e " -----------------------------------------"
+echo -e "\n Qué deseas hacer $user"
 while :
 do
-echo -e "\n1. Actualizar"
-echo -e "2. Buscar"
-echo -e "3. Instalar"
-echo -e "4. Remover"
-echo -e "5. Grupos"
-echo -e "6. Copr"
-echo -e "7. Limpiar"
-echo -e "8. Ayuda"
-echo -e "9. Salir\n"
-read -p "Opción: " quehacer
+echo -e "\n 1. Actualizar"
+echo -e " 2. Buscar"
+echo -e " 3. Instalar"
+echo -e " 4. Remover"
+echo -e " 5. Grupos"
+echo -e " 6. Copr"
+echo -e " 7. Limpiar"
+echo -e " 8. Ayuda"
+echo -e " 9. Salir\n"
+read -p " Opción: " quehacer
 	case $quehacer in
 		1) 	clear
             echo "Actualizando Repositorios";
@@ -44,14 +44,15 @@ read -p "Opción: " quehacer
             echo "ELIMINANDO..."
             sudo dnf remove $purge
             ;;
-        5)      echo -e "------------------------------"
-                echo -e "*** Grupos de repositorios ***"
-                echo -e "------------------------------\n"
-                echo -e "1. Listar "
-                echo -e "2. Información"
-                echo -e "3. Instalar"
-                echo -e "4. Remover"
-                echo -e "5. Exit\n"
+        5)      echo -e " ------------------------------"
+                echo -e " ***         GROUP          ***"
+                echo -e " *** Grupos de repositorios ***"
+                echo -e " ------------------------------\n"
+                echo -e " 1. Listar "
+                echo -e " 2. Información"
+                echo -e " 3. Instalar"
+                echo -e " 4. Remover"
+                echo -e " 5. Exit\n"
                   read -p "Opción: " group
                   if [ $group == 1 ]; then
                   sudo dnf group list
@@ -80,15 +81,16 @@ read -p "Opción: " quehacer
                   echo -e "\n\nVolviendo al menu principal\n"
                   fi
                   ;;
-       6)  echo -e "------------------------------------"
-           echo -e "***             COPR             ***"
-           echo -e "*** repositorios de la comunidad ***"
-           echo -e "------------------------------------"
-                echo -e "\n1. Repositorios instalados "
-                echo -e "2. Habilitar repositorios"
-                echo -e "3. Deshabilitar repositorios"
-                echo -e "4. Remover repositorios"
-                echo -e "5. Exit\n"
+       6)  echo -e " ------------------------------------"
+           echo -e " ***             COPR             ***"
+           echo -e " *** Repositorios de la Comunidad ***"
+           echo -e " ***          de Fedora           ***"
+           echo -e " ------------------------------------"
+                echo -e "\n 1. Repositorios instalados "
+                echo -e " 2. Habilitar repositorios"
+                echo -e " 3. Deshabilitar repositorios"
+                echo -e " 4. Remover repositorios"
+                echo -e " 5. Exit\n"
                   read -p "Opción: " group
                   if [ $group == 1 ]; then
                   sudo dnf copr list
@@ -160,11 +162,14 @@ read -p "Opción: " quehacer
             read -n1 -s -p "Presiona cualquier tecla para continuar..."
             echo -e "\n\nVolviendo al menu principal\n"
             ;;
-		9)  echo -e "\nBye Bye... $user\n";
+		9)  echo -e "\n Bye Bye... $user\n";
             exit 1
             ;;
         clear) clear
                ;;    
+            exit | salir) echo -e "\n Que tengas un bonito día $user :)\n"
+                      exit 1
+                      ;;    
         42) clear
             echo -e "\n la respuesta a TODO es 42... \n"
             echo "____*##########*                             "
