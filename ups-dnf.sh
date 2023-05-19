@@ -35,7 +35,8 @@ read -p " Opción: " quehacer
             fi
             ;;
 		3) 	clear
-            read -p "Escribe el nombre del programa que deseas instalar: " pkg
+           echo -e "\n(Para salir presiona Ctrl+c)\n"
+            read -p "Escribe el nombre del programa que deseas instalar: " pkg 
 			echo "Instalando...";
 			sudo dnf install $pkg
             ;;
