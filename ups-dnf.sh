@@ -43,7 +43,7 @@ read -p " Opción: " quehacer
 		4)  clear
             read -p "Escribe el nombre del programa que deseas REMOVER: " pkg 
             echo "ELIMINANDO..."
-            sudo dnf remove $purge
+            sudo dnf remove $pkg
             ;;
         5)      echo -e " ------------------------------"
                 echo -e " ***         GROUP          ***"
